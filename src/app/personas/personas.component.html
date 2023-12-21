@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h1>Listado de Personas</h1>
+      <!-- Property Binding, asigna un valor a una propiedad de la clase, en este caso, disabled
+    la propiedad tomará le dará el valor a la propiedad del botón-->
+
+    <!-- Event Binding lo utilizamos al controlar los eventos con métodos de la clase, 
+    en este caso, modificar el valor de una variable que se muestra en pantalla -->
+      <button class="btn btn-primary" 
+      [disabled]="deshabilitar"
+      (click)="agregarPersona()">
+        Agregar Persona
+      </button>
+      <p>{{mensaje}}</p>
+      <app-persona></app-persona>
+
+      <label >Titulo Persona</label>
+      <!-- Siempre $event es el evento que captura la informacion -->
+      <input type="text" 
+            class="form-control" 
+            (input)="modificarTitulo($event)">
+      {{titulo}}
+    </div>
+  </div>
+</div>
