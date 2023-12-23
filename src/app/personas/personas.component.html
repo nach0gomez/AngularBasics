@@ -5,22 +5,83 @@
       <!-- Property Binding, asigna un valor a una propiedad de la clase, en este caso, disabled
     la propiedad tomará le dará el valor a la propiedad del botón-->
 
-    <!-- Event Binding lo utilizamos al controlar los eventos con métodos de la clase, 
+      <!-- Event Binding lo utilizamos al controlar los eventos con métodos de la clase, 
     en este caso, modificar el valor de una variable que se muestra en pantalla -->
-      <button class="btn btn-primary" 
-      [disabled]="deshabilitar"
-      (click)="agregarPersona()">
+
+      <button
+        class="btn btn-primary"
+        [disabled]="deshabilitar"
+        (click)="agregarPersona()"
+      >
         Agregar Persona
       </button>
-      <p>{{mensaje}}</p>
-      <app-persona></app-persona>
+      <p>{{ mensaje }}</p>
+      <!-- hacemos referencia prop binding a las variables de la clase  -->
+      <app-persona
+        *ngFor="let persona of personas; let i = index"
+        [persona]="persona"
+        [i]="i"
+        ></app-persona>
 
-      <label >Titulo Persona</label>
+      <hr />
+      <!-- evento cuando una tecla se suelta, que espere el tiempo   -->
+      <div (keyup)="(0)">
+        <input #entrada placeholder="repetidor" /> {{ entrada.value }}
+      </div>
+      <hr />
+
+      <label>Titulo Persona</label>
+      <p style="font-size: 13px">(Repetidor con two way binding)</p>
       <!-- Siempre $event es el evento que captura la informacion -->
-      <input type="text" 
-            class="form-control" 
-            (input)="modificarTitulo($event)">
-      {{titulo}}
+
+      <!-- Two Way Binding, es una combinación de Property Binding [] y Event Binding () -->
+      <input type="text" class="form-control" [(ngModel)]="titulo" />
+      <!-- sin necesidad de método, llamamos directamente a la variable
+      con ngModel y la asignamos -->
+      {{ titulo }}
+
+      <hr style="height: 6px; background-color: black" />
+      <h3>Calculadora</h3>
+      <label>Operando A</label>
+      <input type="number" class="form-control" name="opA" [(ngModel)]="opA" />
+      <label>Operando B</label>
+      <input type="number" name="opB" class="form-control" [(ngModel)]="opB" />
+      <button class="btn btn-primary" (click)="operar()">Resultado</button>
+      <p>El resultado es: {{ result }}</p>
+
+      <hr style="background-color: black; height: 10px" />
+      <h3>Directivas Estructurales</h3>
+      <!-- ngIf para condicionar el render de un mensaje con un botón -->
+      <h1>ngIf</h1>
+      <button class="btn btn-primary" (click)="mostrarMensaje()">
+        ngIf Toggle
+      </button>
+      <p *ngIf="mostrar; else noMostrar">{{ ngifMessage }}</p>
+      <!-- arriba en el else le damos la id que usaremos para definir
+      el bloque else de la expresion -->
+      <ng-template #noMostrar>
+        <p>No se muestra ningun contenido aún, soy el else</p>
+      </ng-template>
+      <hr
+        style="
+          position: relative;
+          color: black;
+          height: 7px;
+          background-color: black;
+        "
+      />
+      <h1>ngFor</h1>
+      <p>aplicación para crear Personas</p>
+      <!-- creamos una variable persona para iterar cada item del array 
+      index es una variable de ngFor para tener el index-->
+      <div *ngFor="let persona of personas; let i = index">
+        {{ i + 1 }}: {{ persona.nombre }} {{ persona.apellido }}
+      </div>
     </div>
   </div>
 </div>
+<!-- cuando ese metodo personaCreada se manda a llamar, se emite el evento, en este caso, manda un evento
+que representa una persona, la cual se añade al array -->
+<app-formulario
+  (personaCreada)="personaAgregada($event)"
+></app-formulario>

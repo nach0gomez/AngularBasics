@@ -1,0 +1,46 @@
+
+<div class="container">
+    <hr />
+    <div class="row">
+      <div class="col">
+        <h4>Formulario de Personas</h4>
+      </div>
+    </div>
+  
+    <form class="row">
+      <div class="col-md-2">
+        <label for="nombre" class="sr-only">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Ingrese nombre"
+          class="form-control"
+          [(ngModel)]="nombreInput"
+        />
+      </div>
+  
+      <div class="col-md-2">
+        <label for="apellido" class="sr-only">Apellido</label>
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          placeholder="Ingrese apellido"
+          class="form-control"
+          [(ngModel)]="apellidoInput"
+        />
+      </div>
+  
+      <div class="col-md-2">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          (click)="agregarPersonaForm()"
+        >
+          Agregar Persona
+        </button>
+      </div>
+    </form>
+    <hr />
+  </div>

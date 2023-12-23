@@ -1,11 +1,10 @@
-<p>
-    Nombre: {{nombre}}
-    Apellido: {{apellido}}
-    Edad: {{edad}}
-</p>
+<!-- Utilizar las variables de la clase ts con transpolacion
+   <p>Nombre: {{ nombre }} Apellido: {{ apellido }} Edad: {{ edad }}</p> -->
 
-
- <!-- evento cuando una tecla se suelta, que espere el tiempo   -->
-<div (keyup)="0">
-    <input #entrada> {{entrada.value}}
-</div>
+<!-- para poder aplicar el property binding entre componentes, en este caso de padre a hijo,
+aquí usabamos el array de personas, pero solo lo conoce el componente padre,
+por lo que la defición del ngfor se mueve a el llamado de <app-persona></app-persona>
+y dentro del ts del componente se definen las variables persona e i, con @input()  -->
+<div>
+    {{ i + 1 }}: {{ persona.nombre }} {{ persona.apellido }}
+  </div>

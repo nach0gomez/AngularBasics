@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { PersonasComponent } from './personas/personas.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,
