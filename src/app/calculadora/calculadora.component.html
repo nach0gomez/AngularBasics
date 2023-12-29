@@ -1,0 +1,7 @@
+<h2>Aplicación de Calculadora</h2>
+<!-- result es el event emitter que entrega al padre un dato,
+en este caso es un numero que corresponde al resultado de la operacion 
+$event representa el valor emitido-->
+<app-calc-buttons (result)="ObtenerResultado($event)"></app-calc-buttons>
+<!-- resultadoPadre es el dato que se entrega al hijo, para ser mostrado como resultado -->
+<app-calc-resultado [resultado]="resultadoPadre"></app-calc-resultado>

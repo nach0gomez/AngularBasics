@@ -21,16 +21,18 @@
         *ngFor="let persona of personas; let i = index"
         [persona]="persona"
         [i]="i"
-        ></app-persona>
+      ></app-persona>
 
       <hr />
-      <!-- evento cuando una tecla se suelta, que espere el tiempo   -->
+      <!-- evento cuando una tecla se suelta, que espere el tiempo 0   -->
       <div (keyup)="(0)">
         <input #entrada placeholder="repetidor" /> {{ entrada.value }}
       </div>
       <hr />
 
       <label>Titulo Persona</label>
+      <!-- Two Way Binding -->
+
       <p style="font-size: 13px">(Repetidor con two way binding)</p>
       <!-- Siempre $event es el evento que captura la informacion -->
 
@@ -82,6 +84,38 @@
 </div>
 <!-- cuando ese metodo personaCreada se manda a llamar, se emite el evento, en este caso, manda un evento
 que representa una persona, la cual se añade al array -->
-<app-formulario
-  (personaCreada)="personaAgregada($event)"
-></app-formulario>
+<app-formulario (personaCreada)="personaAgregada($event)"></app-formulario>
+<hr />
+<!-- Calculadora modularizada -->
+<div class="container">
+  <h1>Calculadora Modularizada</h1>
+  <app-calculadora></app-calculadora>
+</div>
+
+<div class="container">
+  <h1>Referencias Locales</h1>
+  <!-- Funcionan como el two way binding, solo que sin tener que declarar los atributos en el 
+  componente, ya que se le da una referencia local, en este ejemplo, con un input -->
+  <hr style="height: 6px; background-color: black" />
+
+  <h3>Calculadora</h3>
+  <label>Operando A</label>
+  <input type="number" class="form-control" name="opA" #InputA />
+  <label>Operando B</label>
+  <input type="number" name="opB" class="form-control" #InputB />
+  <!-- Entran como parametros en la funcion que se llama al clickear -->
+  <button class="btn btn-primary" (click)="operarRefLocales(InputA, InputB)">Operar</button>
+  <p>El resultado es: {{ result }}</p>
+</div>
+
+<div class="container">
+  <h1>ViewChild con Local Reference</h1>
+
+  <label>Nombre</label>
+  <input type="text" class="form-control" name="opA" #InputA />
+  <label>Apellido</label>
+  <input type="text" name="opB" class="form-control" #InputB />
+  <!-- Ya no entran como parámetros, ya que tienen su propia variable en el componente -->
+  <button class="btn btn-primary" (click)="operarViewChild()">Juntar</button>
+  <p>El resultado es: {{ nombreCompleto }}</p>
+</div>
